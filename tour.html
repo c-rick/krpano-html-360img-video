@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>刘三姐故里</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_m547cgvkxpw4s4i.css">
+	<link href="bitbug_favicon.ico" mce_href="bitbug_favicon.ico" rel="icon" type="image/x-icon" /> 
+	<style>
+		@-ms-viewport { width:device-width; }
+		@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+		.Abtn{position: absolute;right: 20px;top: 20%;width: 25px;transition:all 1s;-webkit-transition:all 1s;z-index: 9999;}
+		.Abtn a,.close-hz,.close-zz{text-decoration: none;display:inline-block;padding: 8px;background: rgba(12,12,12,.6);color: #fff;margin-top: 4px;border-radius: 50%;border:1px solid #fff;}
+		.close-hz,.close-zz{position: absolute;top: 10px;right: 20px;}
+		.bg-share,.bg-hz,.bg-zz{display:none;width: 100%;height: 100%;position: fixed;top: 0;left: 0;z-index: 99999;}
+		.close-share{display: block;position: absolute;margin: auto;width: 40%;height: 80px;top: 0;bottom: 0;left: 0;right: 0;}
+		.bg-share{background: url(share.png) no-repeat;background-size:100% 100%;}
+		.bg-hz,.bg-zz{background: rgba(12,12,12,.7);}
+		.content{width: 15rem;position: absolute;height: 20rem;top: 0;bottom: 0;left: 0;right: 0;margin: auto;}
+		.content img{height: 15rem;width: 15rem;}
+		.a-rotate{-webkit-transition:all 2s;transition:all 2s;-webkit-transform:rotate(360deg);transform:rotate(360deg);background: #fff!important;color: #222!important;}
+		.move-left{
+			transform:translateX(100px);
+			-webkit-transform:translateX(100px);
+		}
+	</style>
+</head>
+<body>
+<div style="display:none;"><img src="favo.jpg"  alt=""></div>
+
+<!-- <script src="tour1.js"></script> -->
+<script src="tour.js"></script>
+<div class="bg-share">
+	<a class='close-share'></a>
+</div>
+<div class="bg-hz">
+	<a class="iconfont icon-cuowu close-hz"></a>
+	<div class="content">
+		<p>更多精彩请关注刘三姐微信公众号</p>
+		<img src="./code.jpg" alt="">
+		<p>微官网：<a style="color:#fff;" href="http://lsj.91zmt.com">刘三姐故里</a></p>
+	</div>
+</div>
+
+<div id="panos" style="width:100%;height:100%;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+	<script>
+		embedpano({swf:"tour.swf", xml:"tour.xml", target:"panos", html5:"auto", mobilescale:1.0, passQueryParameters:true});
+	</script>
+	<div class='Abtn'>
+		<a href="tel:18903012180" class="iconfont icon-tel"></a>
+		<a  class="iconfont icon-fx"></a>
+		<!-- <a href='http://map.baidu.com/mobile/webapp/place/list/qt=con&wd=刘三姐故里&c=143&searchFlag=bigBox&version=5&exptype=dep&src_from=webapp_all_bigbox&sug_forward=&src=0&contp=1/vt=map' class="iconfont icon-dw"></a>
+		<a  class="iconfont icon-dz"></a> -->
+		<a  class="iconfont icon-hz"></a>
+		<a href="../360/video/tour.html" class="iconfont icon-video"></a>
+		<a href="http://lsj.91zmt.com/map/" class="iconfont icon-dw"></a>
+	</div>
+</div>
+<script>
+	window.onload=function(){
+		// 分享
+		var sbg=document.querySelector('.bg-share'),hbg=document.querySelector('.bg-hz'),adz=document.querySelector('.icon-dz'),zbg=document.querySelector('.bg-zz'),Abtn=document.querySelector('.Abtn');
+		document.querySelector('.close-share').onclick=closebtn;
+		document.querySelector('.close-hz').onclick=closebtn;
+		Abtn.addEventListener('click',function(e){
+			switch(e.target.className){
+				case'iconfont icon-fx':sbg.style.display='block';break;
+				case'iconfont icon-hz':hbg.style.display='block';break;
+				case'iconfont icon-dz':adz.className+=' a-rotate';break;
+				case'iconfont icon-money':zbg.style.display='block';break;
+			}
+		}) 
+		// document.querySelector('.iconfont.icon-fx').onclick=function(){
+			
+		// }
+		 function closebtn(){
+			this.parentNode.style.display='none';
+		}
+		setTimeout(function(){
+				Abtn.className='Abtn move-left';
+			},3000)
+		
+		document.addEventListener('touchstart', function(){
+			Abtn.className='Abtn';
+			clearTimeout(Abtn.tid);
+			Abtn.tid=setTimeout(function(){
+				Abtn.className='Abtn move-left';
+			},3000)
+		})
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<krpano>
+
+  <style name="skin_style" url="skin/skin_v3.png"/>
+  
+  <skin_settings show_thumb="0"
+	           />
+  
+  <action name="startup">
+    if(startscene === null ,
+	   set(startscene,get(scene[0].name)); 
+	);    
+	loadscene(get(startscene), null, MERGE);
+	
+    setupPanoThumb();
+	   
+  </action>
+  
+  <!-- 场景缩略图容器 -->
+  <action name="setupPanoThumb">
+    
+	if(skin_settings.show_thumb == 1,
+              delayedcall(3,togglegroupList(););
+            );
+		
+	set(group_count,4);
+	 jscall(calc('console.log("log:'+startscene+'")'));
+    
+    if(thumbListContainerName===null,
+      jscall(calc('console.log("log:'+group_count+'")'));
+        for(set(i,0),i LT group_count,inc(i),
+          set(panoThumbOffset,10);
+                                        
+          txtadd(thumbListContainerName,'thumbListContainer_',get(i));
+          txtadd(thumbScrollAreaName,'thumbScrollArea_',get(i));
+
+          addlayer(get(thumbListContainerName));
+          set(layer[get(thumbListContainerName)].type,container);
+          set(layer[get(thumbListContainerName)].parent,menuContainer);
+          set(layer[get(thumbListContainerName)].maskchildren,true);
+          set(layer[get(thumbListContainerName)].keep,true);
+          set(layer[get(thumbListContainerName)].align,leftbottom);
+          set(layer[get(thumbListContainerName)].width,100%);
+          set(layer[get(thumbListContainerName)].height,90);
+          set(layer[get(thumbListContainerName)].bgcolor,0x000000);
+          set(layer[get(thumbListContainerName)].bgalpha,0.3);
+          set(layer[get(thumbListContainerName)].x,0);
+          set(layer[get(thumbListContainerName)].y,get(panoThumbOffset));
+          set(layer[get(thumbListContainerName)].y,-120);
+
+          addlayer(get(thumbScrollAreaName));
+          set(layer[get(thumbScrollAreaName)].url.flash,%SWFPATH%/plugins/scrollarea.swf);
+          set(layer[get(thumbScrollAreaName)].url,%SWFPATH%/plugins/scrollarea.js); 
+           set(layer[get(thumbScrollAreaName)].zorder,1);
+          set(layer[get(thumbScrollAreaName)].align,center);
+          set(layer[get(thumbScrollAreaName)].keep,true);
+          set(layer[get(thumbScrollAreaName)].height,90);
+          set(layer[get(thumbScrollAreaName)].y,0);
+          set(layer[get(thumbScrollAreaName)].parent,get(thumbListContainerName));
+          set(layer[get(thumbScrollAreaName)].direction,h);
+
+          for(set(j,0),j LT pano[get(startscene)].group[get(i)].pano.count,inc(j),
+            
+            txtadd(groupThumbContainerName,'groupThumbContainer',get(i),'_',get(j));
+            txtadd(categotyThumbImageName,'categotyThumbImage',get(i),'_',get(j));
+            txtadd(groupThumbTxtName,'groupThumbTxt',get(i),'_',get(j));
+            addlayer(get(groupThumbContainerName));
+            set(layer[get(groupThumbContainerName)].type,container);
+            <!-- this -->
+            set(layer[get(groupThumbContainerName)].parent,get(thumbScrollAreaName));
+
+            set(layer[get(groupThumbContainerName)].keep,true);
+            set(layer[get(groupThumbContainerName)].align,leftcenter);
+            set(layer[get(groupThumbContainerName)].title,get(pano[get(startscene)].group[get(i)].pano[get(j)].title));
+            set(layer[get(groupThumbContainerName)].width,68);
+            set(layer[get(groupThumbContainerName)].height,68);
+            set(layer[get(groupThumbContainerName)].bgcolor,0x000000);
+            set(layer[get(groupThumbContainerName)].bgalpha,0.3);
+            set(layer[get(groupThumbContainerName)].x,get(panoThumbOffset));
+            set(layer[get(groupThumbContainerName)].y,0);
+            set(layer[get(groupThumbContainerName)].bgcapture,true);
+            set(layer[get(groupThumbContainerName)].onhover,showtext(get(title),tooltipTextStyle));
+            
+            
+            set(layer[get(groupThumbContainerName)].bgroundedge,2);
+
+
+            addlayer(get(categotyThumbImageName));
+            set(layer[get(categotyThumbImageName)].align,left);
+            set(layer[get(categotyThumbImageName)].parent,get(groupThumbContainerName));
+            set(layer[get(categotyThumbImageName)].scale,1);
+            set(layer[get(categotyThumbImageName)].keep,true);
+            set(layer[get(categotyThumbImageName)].x,0);
+            set(layer[get(categotyThumbImageName)].y,-1);
+            if(device.android,
+              set(layer[get(categotyThumbImageName)].width,67);
+              set(layer[get(categotyThumbImageName)].height,67);
+              ,
+              set(layer[get(categotyThumbImageName)].width,68);
+              set(layer[get(categotyThumbImageName)].height,68);
+            );
+            set(layer[get(categotyThumbImageName)].bgcolor,0xff0000);
+            set(layer[get(categotyThumbImageName)].bgalpha,0.3);
+            set(layer[get(categotyThumbImageName)].bgroundedge,2);
+            
+            set(layer[get(categotyThumbImageName)].linkedScene,get(pano[get(startscene)].group[get(i)].pano[get(j)].name));
+            set(layer[get(categotyThumbImageName)].onclick,loadscene(get(linkedscene),null,MERGE,BLEND(0.5) );updatePanoListUI(););
+
+
+            addlayer(get(groupThumbTxtName));
+            set(layer[get(groupThumbTxtName)].html,get(pano[get(startscene)].group[get(i)].pano[get(j)].title));
+            set(layer[get(groupThumbTxtName)].keep,true);
+            set(layer[get(groupThumbTxtName)].parent,get(groupThumbContainerName));
+
+            set(layer[get(groupThumbTxtName)].url,%SWFPATH%/plugins/textfield.swf);
+            set(layer[get(groupThumbTxtName)].align,bottomleft);
+            if(device.android,
+              set(layer[get(groupThumbTxtName)].width,67);
+              ,
+              set(layer[get(groupThumbTxtName)].width,68);
+            );
+            set(layer[get(groupThumbTxtName)].autoHeight,true);
+            set(layer[get(groupThumbTxtName)].css,text-align:center; color:#fff; font-family:黑体; font-size:12px;);
+            set(layer[get(groupThumbTxtName)].textshadow,1);
+            set(layer[get(groupThumbTxtName)].x,0);
+            set(layer[get(groupThumbTxtName)].y,2);
+            set(layer[get(groupThumbTxtName)].zorder,5);
+            set(layer[get(groupThumbTxtName)].wordwrap,false);
+            set(layer[get(groupThumbTxtName)].backgroundalpha,0.5);
+            set(layer[get(groupThumbTxtName)].backgroundcolor,0x000000);
+            
+            set(layer[get(groupThumbTxtName)].linkedScene,get(pano[get(startscene)].group[get(i)].pano[get(j)].name));
+            set(layer[get(groupThumbTxtName)].onclick,loadscene(get(linkedscene),null,MERGE,BLEND(0.5) );updatePanoListUI(););
+
+            add(panoThumbOffset,90);
+          );
+          set(layer[get(thumbScrollAreaName)].width,get(panoThumbOffset));
+          set(layer[get(thumbScrollAreaName)].onloaded,setcenter(0,0));
+        );
+
+        if(group_count GT 1,
+          addlayer(groupBtnBgContainer);
+          set(layer[groupBtnBgContainer].keep,true);
+          set(layer[groupBtnBgContainer].type,container);
+          set(layer[groupBtnBgContainer].align,leftbottom);
+          set(layer[groupBtnBgContainer].parent,menuContainer);
+          set(layer[groupBtnBgContainer].maskchildren,true);
+          set(layer[groupBtnBgContainer].x,0);
+          set(layer[groupBtnBgContainer].y,0);
+          set(layer[groupBtnBgContainer].width,100%);
+          set(layer[groupBtnBgContainer].height,90);
+          set(layer[groupBtnBgContainer].bgcolor,0x000000);
+          set(layer[groupBtnBgContainer].bgalpha,0.4);
+          set(layer[groupBtnBgContainer].visible,false);
+          
+
+          addlayer(groupScrollArea);
+          set(layer[groupScrollArea].url.flash,%SWFPATH%/plugins/scrollarea.swf);
+          set(layer[groupScrollArea].url,%SWFPATH%/plugins/scrollarea.js);
+          set(layer[groupScrollArea].align,left);
+          set(layer[groupScrollArea].keep,true);
+          set(layer[groupScrollArea].height,90);
+
+          set(layer[groupScrollArea].y,0);
+          set(layer[groupScrollArea].parent,groupBtnBgContainer);
+          set(layer[groupScrollArea].direction,h);
+          set(layer[groupScrollArea].onloaded,setcenter(0,0););
+          
+
+          set(groupThumbOffset,10);
+          for(set(i,0),i LT group_count,inc(i),
+            
+              txtadd(groupBtn,'groupBtn',get(i));
+              txtadd(groupBtnImageBgName,'groupBtnImageBg',get(i));
+              txtadd(groupBtnImageName,'groupBtnImage',get(i));
+              txtadd(groupBtnTxtName,'groupBtnTxt',get(i));
+              
+              
+              addlayer(get(groupBtn));
+              
+              set(layer[get(groupBtn)].keep,true);
+              set(layer[get(groupBtn)].type,container);
+              set(layer[get(groupBtn)].align,leftcenter);
+              set(layer[get(groupBtn)].width,110);
+              set(layer[get(groupBtn)].background,#fff);
+              set(layer[get(groupBtn)].height,110);
+              <!-- this groupScrollArea groupBtnBgContainer-->
+              set(layer[get(groupBtn)].parent,groupScrollArea);
+              set(layer[get(groupBtn)].x,get(groupThumbOffset));
+              set(layer[get(groupBtn)].y,0);
+              
+
+              addlayer(get(groupBtnImageBgName));
+              set(layer[get(groupBtnImageBgName)].align,left);
+              set(layer[get(groupBtnImageBgName)].parent,get(groupBtn));
+              set(layer[get(groupBtnImageBgName)].scale,0.4);
+              set(layer[get(groupBtnImageBgName)].keep,true);
+              set(layer[get(groupBtnImageBgName)].x,0);
+              set(layer[get(groupBtnImageBgName)].y,0);
+              set(layer[get(groupBtnImageBgName)].crop,0|0|218|218);
+
+              layer[get(groupBtnImageBgName)].loadstyle(skin_style);
+
+              addlayer(get(groupBtnImageName));
+              set(layer[get(groupBtnImageName)].title,get(pano[get(startscene)].group[get(i)].title));
+              set(layer[get(groupBtnImageName)].align,topleft);
+              set(layer[get(groupBtnImageName)].parent,get(groupBtn));
+              set(layer[get(groupBtnImageName)].scale,0.55);
+              set(layer[get(groupBtnImageName)].keep,true);
+              set(layer[get(groupBtnImageName)].x,8);
+              set(layer[get(groupBtnImageName)].y,20);
+              set(layer[get(groupBtnImageName)].zorder,1);
+              set(layer[get(groupBtnImageName)].width,130);
+              set(layer[get(groupBtnImageName)].height,130);
+              set(layer[get(groupBtnImageName)].onhover,showtext(get(title),tooltipTextStyle););
+              set(layer[get(groupBtnImageName)].group_index,get(i));
+              set(layer[get(groupBtnImageName)].onclick,togglePanoList(); );
+              set(layer[get(groupBtnImageName)].index,get(i));
+
+              addlayer(get(groupBtnTxtName));
+              set(layer[get(groupBtnTxtName)].html,get(pano[get(startscene)].group[get(i)].title));
+              set(layer[get(groupBtnTxtName)].keep,true);
+              set(layer[get(groupBtnTxtName)].parent,get(groupBtn));
+              set(layer[get(groupBtnTxtName)].visible,true);
+              set(layer[get(groupBtnTxtName)].url,%SWFPATH%/plugins/textfield.swf);
+              set(layer[get(groupBtnTxtName)].align,bottomleft);
+              set(layer[get(groupBtnTxtName)].width,78);
+              set(layer[get(groupBtnTxtName)].height,20);
+              set(layer[get(groupBtnTxtName)].background,false);
+              set(layer[get(groupBtnTxtName)].css,text-align:center; color:#fff; font-family:黑体; font-weight:normal; font-size:12px;);
+              set(layer[get(groupBtnTxtName)].textshadow,1);
+              set(layer[get(groupBtnTxtName)].x,5);
+              set(layer[get(groupBtnTxtName)].y,18);
+              set(layer[get(groupBtnTxtName)].wordwrap,false);
+              set(layer[get(groupBtnTxtName)].zorder,3);
+              set(layer[get(groupBtnTxtName)].backgroundalpha,0.5);
+              set(layer[get(groupBtnTxtName)].background,true);
+              set(layer[get(groupBtnTxtName)].backgroundcolor,0x000000);
+              set(layer[get(groupBtnTxtName)].group_index,get(i));
+              set(layer[get(groupBtnTxtName)].onclick,togglePanoList(); );
+              set(layer[get(groupBtnTxtName)].index,get(i));
+
+              add(groupThumbOffset,110);
+
+            );
+            set(layer[groupScrollArea].width,get(groupThumbOffset));
+
+        );
+    );
+  </action>
+  
+  <!-- 获取图片对象 -->
+  <action name="loadPanoListImage">
+     if(thumbListImageLoaded===null,
+     
+        for(set(i,0),i LT group_count,inc(i),
+        
+          txtadd(thumbListContainerName,'thumbListContainer_',get(i));
+          txtadd(thumbScrollAreaName,'thumbScrollArea_',get(i));
+
+          for(set(j,0),j LT pano[get(startscene)].group[get(i)].pano.count,inc(j),
+
+            txtadd(groupThumbContainerName,'groupThumbContainer',get(i),'_',get(j));
+            txtadd(categotyThumbImageName,'categotyThumbImage',get(i),'_',get(j));
+            txtadd(groupThumbTxtName,'groupThumbTxt',get(i),'_',get(j));
+
+            set(panoThumbURL,get(pano[get(startscene)].group[get(i)].pano[get(j)].thumb));
+            txtadd(panoThumbURL,'');
+            set(layer[get(categotyThumbImageName)].url,get(panoThumbURL));
+            
+
+          );
+        );
+
+        if(group_count GT 1,
+          for(set(i,0),i LT group_count,inc(i),
+
+              txtadd(groupBtnName,'groupBtn',get(i));
+              txtadd(groupBtnImageBgName,'groupBtnImageBg',get(i));
+              txtadd(groupBtnImageName,'groupBtnImage',get(i));
+              txtadd(groupBtnTxtName,'groupBtnTxt',get(i));
+
+
+              set(panoThumbURL,get(pano[get(startscene)].group[get(i)].pano[0].thumb));
+              txtadd(panoThumbURL,'?imageMogr2/thumbnail/140x');
+              set(layer[get(groupBtnImageName)].url,get(panoThumbURL));
+            );
+        );
+      
+    );
+
+    set(thumbListImageLoaded,true);
+  </action>
+  
+  <action name="updatePanoListUI">
+     for(set(i,0),i LT pano[0].group.count,inc(i),
+      
+	  for(set(j,0),j LT pano[0].group[get(i)].pano.count,inc(j),
+	  
+        txtadd(groupThumbContainerName,'groupThumbContainer',get(i),'_',get(j));
+        <!-- 判断当前场景中 pano_id 等于 执行 更换颜色 -->
+		if(scene[get(xml.scene)].name == pano[0].group[get(i)].pano[get(j)].name,
+          set(layer[get(groupThumbContainerName)].bgcolor,0xF6A600);
+          set(layer[get(groupThumbContainerName)].bgalpha,1);
+          ,
+          set(layer[get(groupThumbContainerName)].bgcolor,0xffffff);
+          set(layer[get(groupThumbContainerName)].bgalpha,0.3);
+        );
+		
+      );
+	  
+    );
+  </action>  
+  
+  <!-- 缩略图点击事件 -->
+  <action name="togglePanoList">
+
+    for(set(i,0),i LT pano[0].group.count,inc(i),
+        for(set(j,0),j LT pano[0].group[get(i)].pano.count,inc(j),
+          txtadd(groupThumbContainerName,'groupThumbContainer',get(i),'_',get(j));
+          if(scene[get(xml.scene)].name == pano[0].group[get(i)].pano[get(j)].name,
+            set(layer[get(groupThumbContainerName)].bgcolor,0xF6A600);
+            set(layer[get(groupThumbContainerName)].bgalpha,1);
+            ,
+            set(layer[get(groupThumbContainerName)].bgcolor,0xffffff);
+            set(layer[get(groupThumbContainerName)].bgalpha,0.3);
+          );
+        );
+    );
+    for(set(i,0),i LT group_count,inc(i),
+        txtadd(togglePanoListName,'thumbListContainer_',get(i));
+        txtadd(groupBtnImageBgNameTemp,'groupBtnImageBg',get(i));
+        if(i == group_index,
+            if(layer[get(togglePanoListName)].y LT 184,
+               stopdelayedcall(togglePanoListCallID);
+               set(layer[get(togglePanoListName)].visible,true);
+               tween(layer[get(togglePanoListName)].y,185,.5);
+               set(layer[get(groupBtnImageBgNameTemp)].crop,218|241|218|218);
+             ,
+              tween(layer[get(togglePanoListName)].y,-120,.5,default,txtadd(togglePanoListName,'thumbListContainer_',get(group_index));set(layer[get(togglePanoListName)].visible,false););
+             set(layer[get(groupBtnImageBgNameTemp)].crop,0|0|218|218);
+            );
+            ,		  
+            if(group_index === null AND layer[get(togglePanoListName)].y LT 194,
+              for(set(jj,0),jj LT pano[0].group[get(i)].pano.count,inc(jj),
+                if(scene[get(xml.scene)].name == pano[0].group[get(i)].pano[get(jj)].name,
+                stopdelayedcall(togglePanoListCallID);
+                set(layer[get(togglePanoListName)].visible,true);
+                tween(layer[get(togglePanoListName)].y,195,.5);
+                set(layer[get(groupBtnImageBgNameTemp)].crop,218|241|218|218);
+                );
+              );
+              ,
+              tween(layer[get(togglePanoListName)].y,-120,.3);
+               set(layer[get(groupBtnImageBgNameTemp)].crop,0|0|218|218);
+            );		  
+        );
+    );
+    loadPanoListImage();
+  </action>
+
+  <!-- 按钮点击事件 -->
+  <action name="togglegroupList">
+    if(group_count == 1,
+      togglePanoList();
+    ,
+      if(layer[groupBtnBgContainer].y LT 79,
+        togglePanoList();
+        set(layer[groupBtnBgContainer].visible,true);
+        tween(layer[groupBtnBgContainer].y,80,.3);
+        ,
+        hidePanoList();
+        tween(layer[groupBtnBgContainer].y,-150,.3,default,set(layer[groupBtnBgContainer].visible,false););
+        for(set(i,0),i LT group_count,inc(i),
+          txtadd(groupBtnImageBgNameTemp,'groupBtnImageBg',get(i));
+          set(layer[get(groupBtnImageBgNameTemp)].crop,0|0|218|218);
+        );
+      );
+      loadPanoListImage();
+    );
+
+  </action>
+  
+  <action name="hidePanoList">
+    for(set(i,0),i LT group_count,inc(i),
+      txtadd(togglePanoListName,'thumbListContainer_',get(i));
+      tween(layer[get(togglePanoListName)].y,-120,.3);
+    );
+  </action>
+
+</krpano>

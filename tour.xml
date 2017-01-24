@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<krpano version="1.19" title="刘三姐" onstart="startup();">
+	
+	<include url="skin/vtourskin.xml" />
+	<include url="api_193.xml" />
+	<!-- 皮肤 -->
+	
+	
+	<include url="skin/vtourskin_design_flat_light.xml"    /><!-- if="design === 'flat_light'" -->
+	
+	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
+	<!-- <skin_settings maps="false"
+	               maps_type="google"
+	               maps_bing_api_key=""
+	               maps_google_api_key=""
+	               maps_zoombuttons="false"
+	               gyro="true"
+	               webvr="true"
+	               webvr_gyro_keeplookingdirection="false"
+	               webvr_prev_next_hotspots="true"
+	               littleplanetintro="false"
+	               title="true"
+	               thumbs="true"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="true"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_buttons="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="false"
+	               tooltips_mapspots="false"
+	               deeplinking="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+	               loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+	               loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+	               loadingtext="请稍等..."
+	               layout_width="100%"
+	               layout_maxwidth="814"
+	               controlbar_width="-24"
+	               controlbar_height="40"
+	               controlbar_offset="20"
+	               controlbar_offset_closed="-40"
+	               controlbar_overlap.no-fractionalscaling="10"
+	               controlbar_overlap.fractionalscaling="0"
+	               design_skin_images="vtourskin.png"
+	               design_bgcolor="#999"
+	               design_bgalpha="0.7"
+	               design_bgborder="0"
+	               design_bgroundedge="10"
+	               design_bgshadow="0 4 10 0x000000 0.3"
+	               design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+	               design_thumbborder_padding="2"
+	               design_thumbborder_bgroundedge="2"
+	               design_text_css="color:#FFFFFF; font-family:Arial;background:rgba(12,12,12,.5);"
+	               design_text_shadow="1"
+	               /> -->
+
+	<!--
+	    For an alternative skin design either change the <skin_settings> values 
+	    from above or optionally include one of the predefined designs from below.
+	-->
+	<!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+	<!-- <include url="skin/vtourskin_design_glass.xml"       /> -->
+	<!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+	<!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+	<!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+	
+	<!-- startup action - load the first scene -->
+
+	
+    
+
+
+	<!-- <action name="startup" autorun="onstart">
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+	</action> -->
+	<!-- 隐藏setting -->
+	<!-- <action name="hide_vtourskin_all" autorun="onstart">
+	        delayedcall(1,skin_hideskin());
+	</action> -->
+	
+	<!-- 音乐 -->
+	<action name="bgsnd_action" autorun="onstart">
+	playsound(bgsnd, 'musice.mp3', 0);
+	</action>
+	<action name="toggle_snd" >
+		if(plugin[snd].x==10,
+		tween(plugin[snd].x,-100);
+		,
+		tween(plugin[snd].x,10);
+		)
+	</action>
+	<!-- 音乐按钮 -->
+	<plugin name="snd" url="soundonoff.png" keep="true" align="righttop" x="10" y="10" alpha="0.6" scale="0.5" onover="tween(alpha,1);" onout="tween(alpha,0.25);"
+	        crop="0|0|50|50"
+	        onloaded="if(ismobile,set(scale,0.6));"
+	        onclick="pausesoundtoggle(bgsnd); switch(crop, 0|0|50|50, 0|50|50|50);"
+	        />
+		<!-- 分组 -->
+	<pano name="scene_a1" >			
+            
+		<group name="group1" title="流河寨" thumb="%SWFPATH%/panos/b5.tiles/thumb.jpg" >    
+			<pano name="scene_b5" title="流河寨门口" thumb="%SWFPATH%/panos/b5.tiles/thumb.jpg" />
+            <pano name="scene_b6" title="流河寨敬酒点" thumb="%SWFPATH%/panos/b6.tiles/thumb.jpg" /> <pano name="scene_b8" title="刘三姐故居" thumb="%SWFPATH%/panos/b8.tiles/thumb.jpg" />  <pano name="scene_b7" title="莫老爷对歌" thumb="%SWFPATH%/panos/b7.tiles/thumb.jpg" />   <pano name="scene_b7(2)" title="刘三姐歌台" thumb="%SWFPATH%/panos/b7(2).tiles/thumb.jpg" />
+            <pano name="scene_b8(2)" title="流河寨铁桥" thumb="%SWFPATH%/panos/b8(2).tiles/thumb.jpg" />
+            <pano name="scene_b9" title="歌仙庙广场" thumb="%SWFPATH%/panos/b9.tiles/thumb.jpg" />       
+        </group>
+				
+        <group name="group2" title="冯京公园" thumb="%SWFPATH%/panos/847624.tiles/thumb.jpg" >
+				
+            <pano name="scene_b1" title="冯京公园大门" thumb="%SWFPATH%/panos/b1.tiles/thumb.jpg" />
+            <pano name="scene_b2" title="冯京公园" thumb="%SWFPATH%/panos/b2.tiles/thumb.jpg" />
+            <pano name="scene_b3" title="冯京公园码头" thumb="%SWFPATH%/panos/b3.tiles/thumb.jpg" />
+            <pano name="scene_b4(0)" title="游船" thumb="%SWFPATH%/panos/b4(0).tiles/thumb.jpg" />		
+        </group>
+				
+		<group name="group3" title="古龙河" thumb="%SWFPATH%/panos/d1.tiles/thumb.jpg" >
+				
+            <pano name="scene_d1" title="古龙河" thumb="%SWFPATH%/panos/d1.tiles/thumb.jpg" />
+			<pano name="scene_d2" title="古龙河码头" thumb="%SWFPATH%/panos/d2.tiles/thumb.jpg" />
+			<pano name="scene_d3" title="古龙河游船" thumb="%SWFPATH%/panos/d3.tiles/thumb.jpg" />
+			<pano name="scene_d4(3)" title="古龙河游船" thumb="%SWFPATH%/panos/d4(3).tiles/thumb.jpg" />
+			<pano name="scene_d4(1)" title="古龙河游船" thumb="%SWFPATH%/panos/d4(1).tiles/thumb.jpg" />	
+        </group>
+        <group name="group4" title="龙洲岛" thumb="%SWFPATH%/panos/c2.tiles/thumb.jpg" >
+				
+            <pano name="scene_c2" title="龙洲岛" thumb="%SWFPATH%/panos/c2.tiles/thumb.jpg" />
+			<pano name="scene_c3" title="龙洲岛大厅" thumb="%SWFPATH%/panos/c3.tiles/thumb.jpg" />
+			<pano name="scene_c4(2)" title="龙洲岛客房区" thumb="%SWFPATH%/panos/c4(2).tiles/thumb.jpg" />
+			<pano name="scene_c4" title="龙洲岛餐厅区" thumb="%SWFPATH%/panos/c4.tiles/thumb.jpg" />
+			<pano name="scene_c5(3)" title="龙洲岛餐厅包间" thumb="%SWFPATH%/panos/c5(3).tiles/thumb.jpg" />
+			<pano name="scene_c5" title="龙洲岛餐厅包间" thumb="%SWFPATH%/panos/c5.tiles/thumb.jpg" />
+			<pano name="scene_c5_(2)" title="龙洲岛客房" thumb="%SWFPATH%/panos/c5_(2).tiles/thumb.jpg" />
+			<pano name="scene_c5(4)" title="龙洲岛客房" thumb="%SWFPATH%/panos/c5(4).tiles/thumb.jpg" />	
+        </group>		
+	
+    </pano>
+	<scene  name="scene_a1" title="欢迎您" onstart="" havevrimage="true" thumburl="panos/a1.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="-18.195" vlookat="21.904" fovtype="MFOV" fov="132.227" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/a1.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/a1.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/a1.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/a1.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="游船" style="skin_hotspotstyle" ath="-118.627" atv="30.068" linkedscene="scene_b4(1)" />
+		
+	</scene>
+
+	<scene   name="scene_b4(1)" title="游船" onstart="" havevrimage="true" thumburl="panos/b4(1).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="167.445" vlookat="20.320" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b4(1).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b4(1).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b4(1).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b4(1).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="流河寨门口" style="skin_hotspotstyle" ath="157.278" atv="20.705" linkedscene="scene_b5" />
+		
+	</scene>
+
+	<scene group_id='1' name="scene_b5" title="流河寨门口" onstart="" havevrimage="true" thumburl="panos/b5.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b5.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b5.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b5.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b5.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" text="去景点" style="skin_hotspotstyle" ath="-8.177" atv="12.008" onclick="switch(hotspot[spot2].visible);switch(hotspot[spot3].visible);switch(hotspot[spot4].visible);" />
+		<hotspot name="spot2" text="冯京公园" style="skin_hotspotstyle" ath="-24.727" atv="-4.863" linkedscene="scene_b1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot3" text="山庄" style="skin_hotspotstyle" ath="-5.722" atv="-4.557" linkedscene="scene_c1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot4" text="古龙河" style="skin_hotspotstyle" ath="12.356" atv="-4.758" linkedscene="scene_d1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot5" text='回到船上' style="skin_hotspotstyle" ath="-43.852" atv="9.324" linkedscene="scene_b4(1)" />
+		<hotspot name="spot6" text='流河寨敬酒点' style="skin_hotspotstyle" ath="-170.597" atv="-15.488" linkedscene="scene_b6" />
+
+	</scene>
+	
+	<scene group_id='1' name="scene_b6" title="流河寨敬酒点" onstart="" havevrimage="true" thumburl="panos/b6.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="53.723" vlookat="11.632" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b6.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b6.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b6.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b6.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		
+		<hotspot name="spot2" text="刘三姐故居" style="skin_hotspotstyle" ath="2.973" atv="11.234" linkedscene="scene_b8" />
+		<hotspot name="spot3" text="回到流河寨门口" style="skin_hotspotstyle" ath="-166.417" atv="19.378" linkedscene="scene_b5" />
+
+	</scene>
+	
+	<scene group_id='1' name="scene_b8" title="刘三姐故居" onstart="" havevrimage="true" thumburl="panos/b8.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="507.090" vlookat="16.049" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b8.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b8.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b8.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b8.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1"  style="skin_hotspotstyle" ath="-109.364" atv="17.088" onclick="switch(hotspot[spot2].visible);switch(hotspot[spot3].visible);" />
+		<hotspot name="spot2" text="流河寨敬酒点" style="skin_hotspotstyle" ath="-84.720" atv="-2.285" linkedscene="scene_b6" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot3" text="莫老爷对歌" style="skin_hotspotstyle" visible="false" ath="-126.431" atv="-2.706" linkedscene="scene_b7" url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+
+
+	</scene>
+
+	<scene group_id='1' name="scene_b7" title="莫老爷对歌" onstart="" havevrimage="true" thumburl="panos/b7.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="129.939" vlookat="34.905" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b7.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b7.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b7.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b7.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text='刘三姐故居' style="skin_hotspotstyle" ath="97.599" atv="6.509" linkedscene="scene_b8" />
+		<hotspot name="spot2" text='刘三姐歌台' style="skin_hotspotstyle" ath="-172.079" atv="12.232" linkedscene="scene_b7(2)" />
+
+	</scene>
+
+	
+
+	<scene group_id='1' name="scene_b7(2)" title="刘三姐歌台" onstart="" havevrimage="true" thumburl="panos/b7(2).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b7(2).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b7(2).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b7(2).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b7(2).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="莫老爷对歌" style="skin_hotspotstyle" ath="79.768" atv="7.396" linkedscene="scene_b7" />
+		<hotspot name="spot2" text="流河寨铁桥" style="skin_hotspotstyle" ath="-74.791" atv="12.004" linkedscene="scene_b8(2)" />
+
+	</scene>
+
+	<scene group_id='1' name="scene_b8(2)" title="流河寨铁桥" onstart="" havevrimage="true" thumburl="panos/b8(2).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b8(2).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b8(2).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b8(2).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b8(2).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		
+		<hotspot name="spot2" text="歌仙庙广场" style="skin_hotspotstyle" ath="-105.492" atv="4.121" linkedscene="scene_b9" />
+		<hotspot name="spot3" text="返回歌台" style="skin_hotspotstyle" ath="66.026" atv="2.245" linkedscene="scene_b7(2)" />
+
+	</scene>
+
+	<scene group_id='1' name="scene_b9" title="歌仙庙广场" onstart="" havevrimage="true" thumburl="panos/b9.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b9.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b9.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b9.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b9.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1"   style="skin_hotspotstyle" ath="-109.364" atv="17.088" onclick="switch(hotspot[spot2].visible);switch(hotspot[spot3].visible);" />
+		<hotspot name="spot2" text="离开" style="skin_hotspotstyle" ath="-84.720" atv="-2.285" linkedscene="scene_b4(0)" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot3" text="返回铁桥" style="skin_hotspotstyle" visible="false" ath="-126.431" atv="-2.706" linkedscene="scene_b8(2)" url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+
+
+	</scene>
+
+	<scene  name="scene_b4(0)" title="大游船" onstart="" havevrimage="true" thumburl="panos/b4(0).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="8.564" vlookat="0.171" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b4(0).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b4(0).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b4(0).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b4(0).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="到歌仙庙广场" style="skin_hotspotstyle" ath="9.592" atv="11.332" linkedscene="scene_b9" />
+		<hotspot name="spot2" text="返回码头" style="skin_hotspotstyle" ath="-170.544" atv="9.848" linkedscene="scene_b3" />
+
+	</scene>
+
+	<scene group_id='2' name="scene_b3" title="冯京公园码头" onstart="" havevrimage="true" thumburl="panos/b3.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b3.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b3.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b3.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b3.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="冯京公园" style="skin_hotspotstyle" ath="-92.777" atv="2.679" linkedscene="scene_b2" />
+		<hotspot name="spot2" text="到船上去" style="skin_hotspotstyle" ath="-178.762" atv="27.939" linkedscene="scene_b4(0)" />
+
+	</scene>
+
+	
+
+	<scene group_id='2'  name="scene_b2" title="冯京公园" onstart="" havevrimage="true" thumburl="panos/b2.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="187.501" vlookat="-2.742" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b2.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b2.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b2.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b2.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text='冯京公园码头' style="skin_hotspotstyle" ath="89.876" atv="10.279" linkedscene="scene_b3" />
+		<hotspot name="spot2" text='冯京公园大门' style="skin_hotspotstyle" ath="-5.637" atv="6.584" linkedscene="scene_b1" />
+
+	</scene>
+
+	
+	<scene group_id='2' name="scene_b1" title="冯京公园大门" onstart="" havevrimage="true" thumburl="panos/b1.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="-178.122" vlookat="14.559" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/b1.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/b1.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/b1.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/b1.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		
+		<hotspot name="spot1" text="返回其他景点" style="skin_hotspotstyle" ath="2.760" atv="7.998" onclick="switch(hotspot[spot2].visible);switch(hotspot[spot3].visible);switch(hotspot[spot4].visible);" />
+		<hotspot name="spot2" text="流河寨" style="skin_hotspotstyle" ath="-15.826" atv="-9.940" linkedscene="scene_b5" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot3" text="龙洲岛" style="skin_hotspotstyle" ath="4.075" atv="-10.345" linkedscene="scene_c1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot4" text="古龙河" style="skin_hotspotstyle" ath="23.457" atv="-9.258" linkedscene="scene_d1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot5" text="进入冯京公园" style="skin_hotspotstyle" ath="-177.119" atv="8.196" linkedscene="scene_b2" />
+
+	</scene>
+	
+	<scene group_id='3' name="scene_d1" title="古龙河" onstart="" havevrimage="true" thumburl="panos/d1.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="-182.618" vlookat="8.579" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/d1.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/d1.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/d1.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/d1.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		
+		<hotspot name="spot1" text="返回其他景点" style="skin_hotspotstyle" ath="174.772" atv="13.280" onclick="switch(hotspot[spot2].visible);switch(hotspot[spot3].visible);switch(hotspot[spot4].visible);" />
+		<hotspot name="spot2" text="冯京公园" style="skin_hotspotstyle" ath="172.101" atv="-4.382" linkedscene="scene_b1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot3" text="龙洲岛" style="skin_hotspotstyle" ath="-169.389" atv="-2.839" linkedscene="scene_c1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot4" text="古龙河" style="skin_hotspotstyle" ath="154.813" atv="-2.819" linkedscene="scene_d1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot5" text="古龙河码头" style="skin_hotspotstyle" ath="71.484" atv="5.072" linkedscene="scene_d2" />
+
+	</scene>
+
+	<scene group_id='3' name="scene_d2" title="古龙河码头" onstart="" havevrimage="true" thumburl="panos/d2.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="8.905" vlookat="0.000" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/d2.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/d2.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/d2.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/d2.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="古龙河游船" style="skin_hotspotstyle" ath="-2.422" atv="21.446" linkedscene="scene_d3" />
+		<hotspot name="spot2" text="古龙河门口" style="skin_hotspotstyle" ath="-142.579" atv="7.210" linkedscene="scene_d1" />
+
+	</scene>
+
+	<scene group_id='3' name="scene_d3" title="古龙河游船" onstart="" havevrimage="true" thumburl="panos/d3.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="189.336" vlookat="14.516" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/d3.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/d3.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/d3.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/d3.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="古龙河码头" style="skin_hotspotstyle" ath="-22.247" atv="32.607" linkedscene="scene_d2" />
+		<hotspot name="spot2" text="古龙河游船" style="skin_hotspotstyle" ath="-115.940" atv="18.232" linkedscene="scene_d4(3)" />
+
+	</scene>
+
+	<scene group_id='3' name="scene_d4(3)" title="古龙河游船" onstart="" havevrimage="true" thumburl="panos/d4(3).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="7.596" vlookat="32.693" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/d4(3).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/d4(3).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/d4(3).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/d4(3).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="返回" style="skin_hotspotstyle" ath="-170.355" atv="34.062" linkedscene="scene_d3" />
+		<hotspot name="spot2" text="古龙河游船" style="skin_hotspotstyle" ath="1.452" atv="33.919" linkedscene="scene_d4(1)" />
+
+	</scene>
+
+	<scene group_id='3' name="scene_d4(1)" title="古龙河游船" onstart="" havevrimage="true" thumburl="panos/d4(1).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/d4(1).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/d4(1).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/d4(1).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/d4(1).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="古龙河游船" style="skin_hotspotstyle" ath="-10.122" atv="30.205" linkedscene="scene_d4(4)" />
+		<hotspot name="spot2" text="返回" style="skin_hotspotstyle" ath="-172.522" atv="34.100" linkedscene="scene_d4(3)" />
+
+	</scene>
+	
+	<scene group_id='4' name="scene_c2" title="龙洲岛山庄" onstart="" havevrimage="true" thumburl="panos/c2.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="194.737" vlookat="21.833" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c2.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c2.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c2.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c2.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="其他" url='./skin/new_spotd3_gif.png' onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" style="skin_hotspotstyle" ath="-78.225" atv="2.896" onclick="switch(hotspot[spot2].visible);switch(hotspot[spot3].visible);switch(hotspot[spot4].visible);" />
+		<hotspot name="spot2" text="冯京公园" style="skin_hotspotstyle" ath="-80.867" atv="-18.599" linkedscene="scene_b1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot3" text="流河寨" style="skin_hotspotstyle" ath="-99.441" atv="-9.794" linkedscene="scene_b5" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		<hotspot name="spot4" text="古龙河" style="skin_hotspotstyle" ath="-63.007" atv="-14.389" linkedscene="scene_d1" visible="false"  url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" />
+		
+		<hotspot name="spot5" text='山庄大厅' style="skin_hotspotstyle" ath="-170.932" atv="12.339" linkedscene="scene_c3" />
+		
+		
+	</scene>
+
+	<scene group_id='4' name="scene_c3" title="山庄大厅" onstart="" havevrimage="true" thumburl="panos/c3.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="-178.026" vlookat="22.629" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c3.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c3.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c3.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c3.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="餐厅" url='./skin/new_spotd2_gif.png' onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" style="skin_hotspotstyle" ath="129.592" atv="6.998" linkedscene="scene_c4" />
+		<hotspot name="spot2" text="客房" url='./skin/new_spotd2_gif.png' onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" style="skin_hotspotstyle" ath="-116.732" atv="4.550" linkedscene="scene_c4(2)" />
+		<hotspot name="spot3" text="离开酒店" style="skin_hotspotstyle" ath="1.718" atv="15.437" linkedscene="scene_c2" />
+
+	</scene>
+
+	<scene group_id='4' name="scene_c4(2)" title="客房过道" onstart="" havevrimage="true" thumburl="panos/c4(2).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="-10.998" vlookat="15.178" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c4(2).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c4(2).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c4(2).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c4(2).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="回到酒店大厅" style="skin_hotspotstyle" ath="-178.221" atv="10.812" linkedscene="scene_c3" />
+		<hotspot name="spot2" url='./skin/new_spotd2_gif.png'  text="进入客房" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" style="skin_hotspotstyle" ath="-16.148" atv="24.431" linkedscene="scene_c5(3)" />
+		<hotspot name="spot3" url='./skin/new_spotd3_gif.png' text="进入客房" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" style="skin_hotspotstyle" ath="7.642" atv="6.835" linkedscene="scene_c5(4)" />
+
+	</scene>
+
+	<scene group_id='4' name="scene_c4" title="餐厅" onstart="" havevrimage="true" thumburl="panos/c4.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="-75.851" vlookat="13.007" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c4.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c4.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c4.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c4.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="回到酒店大厅" style="skin_hotspotstyle" ath="-20.633" atv="27.001" linkedscene="scene_c3" />
+		<hotspot name="spot2" text="进入包间" url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();" style="skin_hotspotstyle" ath="-83.509" atv="-4.466" linkedscene="scene_c5_(2)" />
+
+		<hotspot name="spot3" text="进入包间" url="./skin/target.png" onloaded="do_crop_animation(128,128,60);add_all_the_time_tooltip();"   style="skin_hotspotstyle" ath="-126.886" atv="-3.360" linkedscene="scene_c5" />
+
+	</scene>
+
+	<scene group_id='4' name="scene_c5_(2)" title="餐厅包间" onstart="" havevrimage="true" thumburl="panos/c5_(2).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c5_(2).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c5_(2).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c5_(2).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c5_(2).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="离开" style="skin_hotspotstyle" ath="103.298" atv="28.505" linkedscene="scene_c4" />
+
+	</scene>
+
+	<scene group_id='4' name="scene_c5(3)" title="客房" onstart="" havevrimage="true" thumburl="panos/c5(3).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c5(3).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c5(3).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c5(3).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c5(3).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="离开" style="skin_hotspotstyle" ath="-164.663" atv="19.343" linkedscene="scene_c4(2)" />
+
+	</scene>
+	
+	<scene group_id='4' name="scene_c5(4)" title="客房" onstart="" havevrimage="true" thumburl="panos/c5(4).tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c5(4).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c5(4).tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c5(4).tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c5(4).tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="离开" style="skin_hotspotstyle"  ath="45.448" atv="24.960" linkedscene="scene_c4(2)" />
+
+	</scene>
+	<scene group_id='4' name="scene_c5" title="餐厅包间" onstart="" havevrimage="true" thumburl="panos/c5.tiles/thumb.jpg" lat="24.55581389" lng="108.66302222" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/c5.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1664" tiledimageheight="1664">
+				<cube url="panos/c5.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="768" tiledimageheight="768">
+				<cube url="panos/c5.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/c5.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" text="离开" style="skin_hotspotstyle" ath="-20.189" atv="14.400" linkedscene="scene_c4" />
+
+	</scene>
+	
+</krpano>
